@@ -1,10 +1,15 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { Routes } from './src/routes';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export default function App() {
+  const queryClient = new QueryClient();
+
   return (
-    <NavigationContainer>
-      <Routes />
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 }
