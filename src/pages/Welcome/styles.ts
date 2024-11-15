@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native';
+import { resize } from '../../utils/resize';
 
 export const Container = styled.View`
   flex: 1;
@@ -12,35 +13,49 @@ export const Container = styled.View`
 `;
 
 export const WelcomeText = styled.Text`
-  font-size: 24px;
   margin-bottom: 20px;
+  font-size: ${resize(32)};
 
   ${({ theme }) => css`
     color: ${theme.colors.text};
+    font-family: ${theme.fonts.regular};
   `}
 `;
 
 export const Input = styled.TextInput`
   width: 100%;
-  height: 40px;
-  border-width: 1px;
-  border-color: #cccccc;
-  border-radius: 4px;
-  padding: 0 10px;
+  height: 60px;
+  padding: 0 20px;
   margin-bottom: 20px;
+  border-width: 1px;
+  border-radius: 4px;
+
+  font-size: ${resize(24)};
+
+  ${({ theme }) => css`
+    border-color: ${theme.colors.border};
+    font-family: ${theme.fonts.regular};
+  `}
 `;
 
 export const Button = styled.TouchableOpacity`
   width: 100%;
-  height: 40px;
-  background-color: #f15a24;
+  height: 60px;
   border-radius: 4px;
   justify-content: center;
   align-items: center;
+
+  ${({ theme }) => css`
+    background-color: ${theme.colors.primary};
+  `}
 `;
 
 export const ButtonText = styled.Text`
-  color: #ffffff;
-  font-size: 16px;
   font-weight: 500;
+  font-size: ${resize(24)};
+
+  ${({ theme }) => css`
+    color: ${theme.colors.white};
+    font-family: ${theme.fonts.semiBold};
+  `}
 `;

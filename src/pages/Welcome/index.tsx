@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import * as S from './styles';
+import { theme } from '../../styles/theme';
 
 export function Welcome() {
   const [name, setName] = useState('');
@@ -13,6 +14,7 @@ export function Welcome() {
         placeholder='Digite o seu nome:'
         value={name}
         onChangeText={setName}
+        placeholderTextColor={theme.colors.gray}
       />
       <S.Button onPress={handleEnter}>
         <S.ButtonText>Entrar</S.ButtonText>
