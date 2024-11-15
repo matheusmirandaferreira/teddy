@@ -1,4 +1,4 @@
-export type GetUsersParams = {
+export type GetClientsParams = {
   page: number;
   limit: number;
 };
@@ -12,6 +12,12 @@ export type ClientProps = {
   updatedAt: string;
 };
 
-export type GetUsersResponse = {
+export type GetClientsResponse = {
   clients: ClientProps[];
+};
+
+export type CreateClientParams = {
+  salary: number;
+  companyValuation: number;
+  name: string;
 };
