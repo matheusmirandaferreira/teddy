@@ -1,26 +1,33 @@
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { BackHandler } from 'react-native';
-import { AntDesign, Ionicons, Octicons } from '@expo/vector-icons';
+import { AntDesign, Feather, Octicons } from '@expo/vector-icons';
 
 import { paths } from '@/routes';
 import { theme } from '@/styles/theme';
 
 import * as S from './styles';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { NavigationProps, PathsValues } from '@/types/common';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type DrawerProps = {
   isOpen: boolean;
   onClose: () => void;
-  activeRoute: string;
-  onNavigate: (route: string) => void;
 };
 
-export function DrawerMenu({
-  isOpen,
-  onClose,
-  activeRoute,
-  onNavigate,
-}: DrawerProps) {
-  const menuItems = [
+type MenuProps = {
+  icon: ReactNode;
+  label: string;
+  route: PathsValues;
+};
+
+export function DrawerMenu({ isOpen, onClose }: DrawerProps) {
+  const route = useRoute();
+  const navigation = useNavigation<NavigationProps>();
+
+  const activeRoute = route.name;
+
+  const menuItems: MenuProps[] = [
     {
       icon: (
         <AntDesign
@@ -32,7 +39,7 @@ export function DrawerMenu({
         />
       ),
       label: 'Home',
-      route: 'home',
+      route: paths.welcome,
     },
     {
       icon: (
@@ -49,22 +56,12 @@ export function DrawerMenu({
       label: 'Clientes',
       route: paths.clients,
     },
-    {
-      icon: (
-        <Ionicons
-          name='grid'
-          size={22}
-          color={
-            activeRoute === 'products'
-              ? theme.colors.primary
-              : theme.colors.black
-          }
-        />
-      ),
-      label: 'Produtos',
-      route: 'products',
-    },
   ];
+
+  const logout = async () => {
+    await AsyncStorage.clear();
+    navigation.navigate(paths.welcome);
+  };
 
   useEffect(() => {
     if (!isOpen) return;
@@ -96,7 +93,7 @@ export function DrawerMenu({
               key={route}
               isActive={activeRoute === route}
               onPress={() => {
-                onNavigate(route);
+                navigation.navigate(route);
                 onClose();
               }}
             >
@@ -104,6 +101,10 @@ export function DrawerMenu({
               <S.MenuText isActive={activeRoute === route}>{label}</S.MenuText>
             </S.MenuItem>
           ))}
+          <S.Logout onPress={logout}>
+            <Feather size={20} color='red' name='log-out' />
+            <S.LogoutText>Sair</S.LogoutText>
+          </S.Logout>
         </S.MenuItemsContainer>
       </S.DrawerContainer>
     </>

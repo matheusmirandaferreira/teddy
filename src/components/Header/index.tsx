@@ -10,7 +10,6 @@ import * as S from './styles';
 
 export function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [activeRoute, setActiveRoute] = useState('home');
 
   return (
     <>
@@ -24,8 +23,6 @@ export function Header() {
       <DrawerMenu
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
-        activeRoute={activeRoute}
-        onNavigate={setActiveRoute}
       />
     </>
   );

@@ -71,3 +71,17 @@ export const Overlay = styled.TouchableOpacity`
   height: ${screenHeight}px;
   background-color: rgba(0, 0, 0, 0.5);
 `;
+
+export const Logout = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  padding: 15px 0;
+  padding-left: 15px;
+`;
+
+export const LogoutText = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.medium};
+  font-size: 16px;
+  color: red;
+  margin-left: 15px;
+`;

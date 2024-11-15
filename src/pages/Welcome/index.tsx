@@ -4,15 +4,15 @@ import { theme } from '@/styles/theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActivityIndicator, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { PathValues } from '@/types/common';
+import { NavigationProps } from '@/types/common';
 import { paths } from '@/routes';
 
 export function Welcome() {
-  const navigation = useNavigation<PathValues>();
+  const navigation = useNavigation<NavigationProps>();
 
   const [name, setName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [initialLoading, setinitialLoading] = useState(true);
+  const [initialLoading, setInitialLoading] = useState(true);
 
   const handleEnter = async () => {
     setIsLoading(true);
@@ -33,7 +33,7 @@ export function Welcome() {
     if (storedName) {
       navigation.navigate(paths.clients);
     } else {
-      setinitialLoading(false);
+      setInitialLoading(false);
     }
   }, [navigation]);
 
