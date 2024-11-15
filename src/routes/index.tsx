@@ -1,7 +1,15 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { Clients } from '../pages/Clients';
-import { ClientDetails } from '../pages/ClientDetails';
-import { Welcome } from '../pages/Welcome';
+
+import { Clients } from '@/pages/Clients';
+import { Welcome } from '@/pages/Welcome';
+import { Header } from '@/components/Header';
+import { ClientDetails } from '@/pages/ClientDetails';
+
+export const paths = {
+  welcome: 'Welcome',
+  clients: 'Clients',
+  clientDetails: 'ClientDetails',
+} as const;
 
 export function Routes() {
   const Stack = createStackNavigator();
@@ -13,9 +21,16 @@ export function Routes() {
           headerShown: false,
         }}
       >
-        <Stack.Screen name='Welcome' component={Welcome} />
-        <Stack.Screen name='Clients' component={Clients} />
-        <Stack.Screen name='ClientDetails' component={ClientDetails} />
+        <Stack.Screen name={paths.welcome} component={Welcome} />
+        <Stack.Group
+          screenOptions={{
+            headerShown: true,
+            header: () => <Header />,
+          }}
+        >
+          <Stack.Screen name={paths.clients} component={Clients} />
+          <Stack.Screen name={paths.clientDetails} component={ClientDetails} />
+        </Stack.Group>
       </Stack.Group>
     </Stack.Navigator>
   );

@@ -1,4 +1,4 @@
-import { GetUsersParams, GetUsersResponse } from '../types/users';
+import { GetUsersParams, GetUsersResponse } from '@/types/users';
 import { api } from './api';
 
 export async function getUsers(params: GetUsersParams) {

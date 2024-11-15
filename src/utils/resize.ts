@@ -1,6 +1,6 @@
 import { Dimensions, PixelRatio } from 'react-native';
 
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+const { width: screenWidth } = Dimensions.get('window');
 
 // Define uma largura base (por exemplo, 375 para iPhone 11) para calcular proporcionalmente
 const baseWidth = 375;
