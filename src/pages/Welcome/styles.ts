@@ -1,21 +1,23 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #ffffff;
   padding: 20px;
-`;
+  align-items: center;
+  justify-content: center;
 
-export const Header = styled.Text`
-  font-size: 14px;
-  color: #333333;
-  margin-bottom: 40px;
+  ${({ theme }) => css`
+    background-color: ${theme.colors.background};
+  `}
 `;
 
 export const WelcomeText = styled.Text`
   font-size: 24px;
-  color: #000000;
   margin-bottom: 20px;
+
+  ${({ theme }) => css`
+    color: ${theme.colors.text};
+  `}
 `;
 
 export const Input = styled.TextInput`

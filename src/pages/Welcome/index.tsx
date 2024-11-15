@@ -8,7 +8,6 @@ export function Welcome() {
 
   return (
     <S.Container>
-      <S.Header>Mobile</S.Header>
       <S.WelcomeText>Olá, seja bem-vindo!</S.WelcomeText>
       <S.Input
         placeholder='Digite o seu nome:'
